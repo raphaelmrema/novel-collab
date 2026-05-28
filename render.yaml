@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: novelcollab
+    runtime: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: novelcollab-db
+          property: connectionString
+
+databases:
+  - name: novelcollab-db
+    plan: free
